@@ -9,6 +9,7 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
+    headerMode: 'none'
   },
 );
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { Text } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
+import Container from '@/components/Container';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -8,16 +9,12 @@ interface Props {
 
 interface State {}
 
-export default class Home extends Component<Props, State> {
+export default class Home extends Component {
   render() {
     return (
-      <View>
-        <Button
-          title={'Press me'}
-          onPress={() => this.props.navigation.navigate('Secondary')} />
-      </View>
+      <Container>
+        <Text>hey</Text>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({});
