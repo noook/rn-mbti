@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView, StyleProp, StyleSheetProperties } from 'react-native';
+import { SafeAreaView, StyleProp, StyleSheetProperties } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import Styles from './styles/ContainerStyles';
 
