@@ -9,11 +9,11 @@ interface Props {
 
 interface State {}
 
-export default class Home extends Component {
+export default class ProfileScreen extends Component<Props, State> {
   render() {
     return (
       <Container>
-        <Text>hey</Text>
+        <Text>Profile</Text>
       </Container>
     );
   }
