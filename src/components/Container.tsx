@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleProp, StyleSheetProperties } from 'react-native';
+import { SafeAreaView, StyleProp, ViewStyle } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import Styles from './styles/ContainerStyles';
 
 interface Props {
-	navigation: NavigationStackProp;
-	style: StyleProp<StyleSheetProperties>;
+	navigation?: NavigationStackProp;
+	style?: StyleProp<ViewStyle>;
 }
 
-interface State { }
+interface State {}
 
 export default class Container extends Component<Props, State> {
 	render() {
