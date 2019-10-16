@@ -4,6 +4,7 @@ import { Metrics, Colors } from '@/constants';
 export default StyleSheet.create({
   tabBarItem: {
     width: '33%',
+    paddingVertical: Metrics.isIphoneX ? 0 : 5,
     justifyContent: 'center',
     alignItems: 'center'
   },
