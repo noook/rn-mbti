@@ -1,16 +1,27 @@
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { HomeScreen, ProfileScreen, TypesScreen } from '@/views';
+import { TabBar } from '@/components';
 
 export default createBottomTabNavigator({
   Home: {
-    screen: HomeScreen
+    screen: HomeScreen,
+    params: {
+      icon: "home"
+    }
   },
   Types: {
-    screen: TypesScreen
+    screen: TypesScreen,
+    params: {
+      icon: "list"
+    }
   },
   Profile: {
-    screen: ProfileScreen
+    screen: ProfileScreen,
+    params: {
+      icon: "user"
+    }
   },
 },{
   initialRouteName: 'Home',
+  tabBarComponent: TabBar,
 });

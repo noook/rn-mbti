@@ -13,7 +13,7 @@ interface State {}
 export default class Container extends Component<Props, State> {
 	render() {
 		return (
-			<SafeAreaView style={[Styles.container, this.props.style && this.props.style]}>
+			<SafeAreaView style={[Styles.container, this.props.style && this.props.style]} {...this.props}>
 				{this.props.children && this.props.children}
 			</SafeAreaView>
 		);
