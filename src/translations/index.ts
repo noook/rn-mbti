@@ -50,7 +50,6 @@ class Translator {
   }
 
   public trans(key: string, params?: TranslatorParam): string {
-    console.log(this.translations[deviceLanguage])
     let translation = this.deepTrans(key.split('.'), this.translations[deviceLanguage]);
     if (!params) return translation;
 

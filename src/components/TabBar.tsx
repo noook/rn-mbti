@@ -8,7 +8,7 @@ interface Props {
   navigation?: NavigationStackProp;
 }
 
-interface State { }
+interface State {}
 
 export default class TabBar extends Component<Props, State> {
   constructor(props) {

@@ -5,5 +5,5 @@ import TypesScreen from './TypesScreen';
 export {
   HomeScreen,
   ProfileScreen,
-  TypesScreen
+  TypesScreen,
 }
