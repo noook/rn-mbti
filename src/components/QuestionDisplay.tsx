@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import Container from './Container';
-import IntensityPicker from './IntensityPicker';
+import IntensityPicker, { IntensityPickerItem } from './IntensityPicker';
 import { questions } from '@/resources/questions.json';
 import { MbtiQuestion } from '@/types/mbti';
 import styles from './styles/QuestionDisplayStyles';
@@ -14,6 +14,7 @@ interface Props {
 interface State {
   step: number;
   questions: MbtiQuestion[][];
+  selected?: IntensityPickerItem;
 }
 
 export default class QuestionDisplay extends Component<Props, State> {
@@ -23,6 +24,7 @@ export default class QuestionDisplay extends Component<Props, State> {
     this.state = {
       step: 1,
       questions,
+      selected: undefined,
     }
   }
 
@@ -35,13 +37,26 @@ export default class QuestionDisplay extends Component<Props, State> {
           <View style={styles.separator} />
           <View style={styles.sentenceContainer}><Text style={styles.sentence}>{question2.label.fr}</Text></View>
         </View>
-        <IntensityPicker style={styles.intensityPicker} />
-        <Button title={'Step + 1'} onPress={() => this.setState({ step: this.state.step + 1 })} />
+        <IntensityPicker
+          value={this.state.selected}
+          style={styles.intensityPicker}
+          onChange={(selected: IntensityPickerItem) => this.setState({ selected })} />
+        <Button
+          disabled={!this.state.selected}
+          title={'Suivant'}
+          onPress={() => this.nextQuestion()} />
       </Container>
     );
   }
 
   getQuestion(step: number): [MbtiQuestion, MbtiQuestion] {
     return this.state.questions[step - 1] as [MbtiQuestion, MbtiQuestion];
+  }
+
+  nextQuestion() {
+    this.setState({
+      step: this.state.step + 1,
+      selected: undefined,
+    });
   }
 }

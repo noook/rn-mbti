@@ -19,27 +19,27 @@ export default StyleSheet.create({
     borderRadius: 100,
   },
   size1: {
-    width: 20,
-    height: 20,
+    width: 22,
+    height: 22,
   },
   size1Inner: {
-    width: 14,
-    height: 14,
+    width: 16,
+    height: 16,
   },
   size2: {
-    width: 25,
-    height: 25,
+    width: 27,
+    height: 27,
   },
   size2Inner: {
-    width: 19,
-    height: 19,
+    width: 21,
+    height: 21,
   },
   size3: {
-    width: 30,
-    height: 30,
+    width: 32,
+    height: 32,
   },
   size3Inner: {
-    width: 24,
-    height: 24,
+    width: 26,
+    height: 26,
   },
 });
