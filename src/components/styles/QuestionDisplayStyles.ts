@@ -28,4 +28,13 @@ export default StyleSheet.create({
     width: '100%',
     marginVertical: 30,
   },
+  questionProgress: {
+    fontSize: 20,
+    marginVertical: 20,
+    fontWeight: 'bold',
+  },
+  progressBar: {
+    height: 5,
+    width: '100%',
+  },
 });

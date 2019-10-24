@@ -15,14 +15,14 @@ export enum TranslatorLangs {
 }
 
 
-const deviceLanguage: string = (() => {
+export const deviceLanguage: string = (() => {
   const locale: string = Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale
     : NativeModules.I18nManager.localeIdentifier;
     return (locale === 'fr' ?  'fr' : 'en').split('_')[0];
 })();
 
-class Translator {
+export class Translator {
   private translations: Translations;
 
   constructor() {

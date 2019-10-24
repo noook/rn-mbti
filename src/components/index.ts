@@ -4,6 +4,7 @@ import TabBarItem from './TabBarItem';
 import HomeBeforeTest from './HomeBeforeTest';
 import QuestionDisplay from './QuestionDisplay';
 import IntensityPicker from './IntensityPicker';
+import ProgressBar from './ProgressBar';
 
 export {
   TabBar,
@@ -12,4 +13,5 @@ export {
   HomeBeforeTest,
   QuestionDisplay,
   IntensityPicker,
+  ProgressBar,
 }
