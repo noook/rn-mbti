@@ -3,9 +3,12 @@ import { Text, View, Button } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import Container from './Container';
 import IntensityPicker, { IntensityPickerItem } from './IntensityPicker';
-import { questions } from '@/resources/questions.json';
-import { MbtiQuestion } from '@/types/mbti';
 import styles from './styles/QuestionDisplayStyles';
+import { questions } from '@/resources/questions.json';
+import { MbtiQuestion, Dichotomy } from '@/types/mbti';
+import { positiveValue } from '@/helper/numbers';
+import { initResults } from '@/helper/mbti';
+import { shuffle } from '@/helper/utils';
 
 interface Props {
   navigation: NavigationStackProp
@@ -13,23 +16,29 @@ interface Props {
 
 interface State {
   step: number;
-  questions: MbtiQuestion[][];
   selected?: IntensityPickerItem;
+  currentQuestions: [MbtiQuestion, MbtiQuestion];
+  results?: {
+    [key in Dichotomy]: number;
+  }
 }
 
 export default class QuestionDisplay extends Component<Props, State> {
+
+  private questions: MbtiQuestion[][] = shuffle(questions);
+
   public constructor(props: Props) {
     super(props);
     
     this.state = {
+      currentQuestions: this.getQuestion(1),
       step: 1,
-      questions,
-      selected: undefined,
+      results: initResults(),
     }
   }
 
   render() {
-    const [question1, question2] = this.getQuestion(this.state.step);
+    const [question1, question2] = this.state.currentQuestions;
     return (
       <Container style={styles.container}>
         <View style={styles.sentencesContainer}>
@@ -50,13 +59,29 @@ export default class QuestionDisplay extends Component<Props, State> {
   }
 
   getQuestion(step: number): [MbtiQuestion, MbtiQuestion] {
-    return this.state.questions[step - 1] as [MbtiQuestion, MbtiQuestion];
+    return this.questions[step - 1] as [MbtiQuestion, MbtiQuestion];
   }
 
   nextQuestion() {
+    const [question1, question2] = this.state.currentQuestions;
+    const letter = this.state.selected.position < 0 ? question1.value : question2.value;
+    const intensity = positiveValue(this.state.selected.position);
+    this.state.results[letter] += intensity;
+    const nextStep = this.state.step + 1;
+
+    if (!this.getQuestion(nextStep)) {
+      return this.endTest()
+    }
+
     this.setState({
-      step: this.state.step + 1,
+      step: nextStep,
       selected: undefined,
+      currentQuestions: this.getQuestion(nextStep),
     });
+  }
+
+  endTest() {
+    console.log(this.state.results); 
+    // Handle Test end
   }
 }

@@ -9,3 +9,7 @@ export interface MbtiQuestion {
   };
   value: Dichotomy | string;
 }
+
+export type MbtiResults = {
+  [key in Dichotomy]: number;
+}
