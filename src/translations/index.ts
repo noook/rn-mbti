@@ -14,16 +14,14 @@ export enum TranslatorLangs {
   EN = 'en',
 }
 
-
-export const deviceLanguage: string = (() => {
-  const locale: string = Platform.OS === 'ios'
-    ? NativeModules.SettingsManager.settings.AppleLocale
-    : NativeModules.I18nManager.localeIdentifier;
-    return (locale === 'fr' ?  'fr' : 'en').split('_')[0];
-})();
-
 export class Translator {
   private translations: Translations;
+  public deviceLanguage: string = (() => {
+    const locale: string = Platform.OS === 'ios'
+      ? NativeModules.SettingsManager.settings.AppleLocale
+      : NativeModules.I18nManager.localeIdentifier;
+      return (locale === 'fr' ?  'fr' : 'en').split('_')[0];
+  })();
 
   constructor() {
     this.translations = {
@@ -50,7 +48,7 @@ export class Translator {
   }
 
   public trans(key: string, params?: TranslatorParam): string {
-    let translation = this.deepTrans(key.split('.'), this.translations[deviceLanguage]);
+    let translation = this.deepTrans(key.split('.'), this.translations[this.deviceLanguage]);
     if (!params) return translation;
 
     Object.entries(params).forEach(([key, value]) => {

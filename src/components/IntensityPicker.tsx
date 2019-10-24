@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ViewStyle, StyleProp, Text, TouchableOpacity, GestureResponderEvent, StyleSheetProperties } from 'react-native';
+import { View, ViewStyle, StyleProp, Text, TouchableOpacity } from 'react-native';
 import styles from './styles/IntensityPickerStyle';
 import { positiveValue } from '@/helper/numbers';
 
@@ -33,7 +33,9 @@ export default class IntensityPicker extends Component<Props, State> {
 
   isSelected(position: number): StyleProp<ViewStyle> | null {
     if (!this.props.value) return null;
-    return this.props.value.position === position ? styles[`size${positiveValue(position)}Inner`] : null;
+    return this.props.value.position === position ?
+      styles[`size${positiveValue(position)}Inner`] :
+      null;
   }
 
   render() {

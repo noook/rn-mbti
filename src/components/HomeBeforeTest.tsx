@@ -17,8 +17,12 @@ export default class HomeBeforeTest extends BaseComponent<Props, State> {
       <Container style={styles.container}>
         <Text style={styles.title}>{this.$t('common.home')}</Text>
         <View style={styles.centeredView}>
-          <TouchableOpacity style={styles.button} onPress={() => this.goToDisplayQuestion()}>
-            <Text style={styles.buttonText}>{this.$t('common.startTheTest')}</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.goToDisplayQuestion()}>
+            <Text style={styles.buttonText}>
+              {this.$t('common.startTheTest')}
+            </Text>
           </TouchableOpacity>
         </View>
       </Container>

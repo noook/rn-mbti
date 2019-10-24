@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, TouchableOpacity, GestureResponderEvent } from 'react-native';
 import Styles from './styles/TabBarItemStyles';
 import { FontAwesome5 as Icon } from '@expo/vector-icons';
-import Translator from '@/translations';
+import BaseComponent from './BaseComponent';
 
 interface Props { 
   iconName: string;
@@ -12,8 +12,8 @@ interface Props {
 }
 interface State { }
 
-export default class TabBar extends Component<Props, State> {
-  constructor(props) {
+export default class TabBar extends BaseComponent<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {};
   }
@@ -22,8 +22,13 @@ export default class TabBar extends Component<Props, State> {
     const { iconName, title, isActive, onPress } = this.props;
     return (
       <TouchableOpacity style={Styles.tabBarItem} onPress={onPress}>
-        <Icon name={iconName} style={[Styles.tabBarItemIcon, isActive && Styles.tabBarItemIconActive]} />
-        <Text style={[Styles.tabBarItemText, isActive && Styles.tabBarItemTextActive]}>{Translator.trans(`routes.${title.toLowerCase()}`)}</Text>
+        <Icon
+          name={iconName}
+          style={[Styles.tabBarItemIcon, isActive && Styles.tabBarItemIconActive]} />
+        <Text
+          style={[Styles.tabBarItemText, isActive && Styles.tabBarItemTextActive]}>
+          {this.$t(`routes.${title.toLowerCase()}`)}
+        </Text>
       </TouchableOpacity>
     )
   }

@@ -11,7 +11,6 @@ import { positiveValue } from '@/helper/numbers';
 import { initResults } from '@/helper/mbti';
 import { shuffle } from '@/helper/utils';
 import BaseComponent from './BaseComponent';
-import { deviceLanguage } from '@/translations';
 
 interface Props {
   navigation: NavigationStackProp
@@ -56,11 +55,15 @@ export default class QuestionDisplay extends BaseComponent<Props, State> {
         </Text>
         <View style={styles.sentencesContainer}>
           <View style={styles.sentenceContainer}>
-            <Text style={styles.sentence}>{question1.label[deviceLanguage]}</Text>
+            <Text style={styles.sentence}>
+              {question1.label[this.$translator.deviceLanguage]}
+            </Text>
           </View>
           <View style={styles.separator} />
           <View style={styles.sentenceContainer}>
-            <Text style={styles.sentence}>{question2.label[deviceLanguage]}</Text>
+            <Text style={styles.sentence}>
+              {question2.label[this.$translator.deviceLanguage]}
+            </Text>
           </View>
         </View>
         <IntensityPicker
