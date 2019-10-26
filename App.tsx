@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
-import AppNavigator from '@/routes';
+import TabNavigator from '@/navigation/TabNavigator';
 
-export const AppContainer = createAppContainer(AppNavigator);
+export const AppContainer = createAppContainer(TabNavigator);
 
 export default class App extends Component {
   render() {
