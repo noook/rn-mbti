@@ -16,6 +16,10 @@ class StorageHelper {
   public async getItem<T>(key: string, transformer?: (retrieved: string) => T) {
     try {
       const retrieved = await AsyncStorage.getItem(`${StorageHelper.prefix}:${key}`);
+      if (null === retrieved) {
+        throw new Error('Inexistent value');
+      }
+
       if (!transformer) {
         return retrieved;
       }
@@ -27,9 +31,12 @@ class StorageHelper {
       }
       
     } catch (e) {
-      console.log('ERROR');
-      console.error(e);
+      throw e;
     }
+  }
+
+  public async removeItem(key: string): Promise<void> {
+    await AsyncStorage.removeItem(`${StorageHelper.prefix}:${key}`);
   }
 }
 
