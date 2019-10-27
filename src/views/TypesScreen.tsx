@@ -5,6 +5,7 @@ import { Container, BaseComponent } from '@/components';
 import styles from './styles/TypesScreenStyles';
 import { MbtiTypeItem } from '@/types/mbti';
 import MbtiTypeTile from '@/components/MbtiTypeTile';
+import { types } from '@/constants/Mbti';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -29,20 +30,15 @@ export default class TypesScreen extends BaseComponent<Props, State> {
   }
 
   public getTypes(): void {
-    let allTypes: object = this.$t('mbti.typeAka');
-    let typesAka: object = Object.keys(allTypes);
-    let summaries: object = this.$t('mbti.summaries');
     let formattedTypes: MbtiTypeItem[] = [];
 
-    for (var i in typesAka) {
-      if (summaries.hasOwnProperty(typesAka[i])) {
-        formattedTypes.push({
-          name: allTypes[typesAka[i]],
-          aka: typesAka[i],
-          summary: summaries[typesAka[i]]
-        });
-      }
-    }
+    types.forEach(type => {
+      formattedTypes.push({
+        aka: type,
+        name: this.$t(`mbti.typeAka.${type}`),
+        summary: this.$t(`mbti.summaries.${type}`),
+      });
+    });
 
     this.setState({ types: formattedTypes, isLoading: false });
   }

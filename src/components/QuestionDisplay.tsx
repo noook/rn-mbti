@@ -12,6 +12,7 @@ import { initResults } from '@/helper/mbti';
 import { shuffle } from '@/helper/utils';
 import BaseComponent from './BaseComponent';
 import StorageHelper from '@/helper/storage';
+import { couples } from '@/constants/Mbti';
 
 interface Props {
   onTestCompleted: () => void;
@@ -24,20 +25,18 @@ interface State {
   results?: MbtiResults;
 }
 
-export default class QuestionDisplay extends BaseComponent<
-  NavigationStackScreenProps<{}, Props>, State
-> {
+export default class QuestionDisplay extends BaseComponent<NavigationStackScreenProps<{}, Props>, State> {
 
   private questions: MbtiQuestion[][] = shuffle(questions);
 
   public constructor(props: NavigationStackScreenProps<{}, Props>) {
     super(props);
-    
+
     this.state = {
       currentQuestions: this.getQuestion(1),
       step: 1,
       results: initResults(),
-    }
+    };
   }
 
   progress(): number {
@@ -91,7 +90,7 @@ export default class QuestionDisplay extends BaseComponent<
     const nextStep = this.state.step + 1;
 
     if (!this.getQuestion(nextStep)) {
-      return this.endTest()
+      return this.endTest();
     }
 
     this.setState({
@@ -104,7 +103,6 @@ export default class QuestionDisplay extends BaseComponent<
 
   async endTest() {
     const { results } = this.state; 
-    const couples: [Dichotomy, Dichotomy][] = [['E', 'I'], ['N', 'S'], ['F', 'T'], ['P', 'J']];
     let result: string = '';
 
     couples.forEach((couple: [Dichotomy, Dichotomy]) => {

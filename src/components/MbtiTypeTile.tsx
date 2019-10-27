@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import BaseComponent from './BaseComponent';
 import { MbtiTypeItem } from '@/types/mbti';
 import styles from './styles/MbtiTypeTileStyles';
+import { pics } from '@/constants/Mbti';
 
 interface Props {
   item: MbtiTypeItem;
@@ -29,7 +30,10 @@ export default class MbtiTypeTile extends BaseComponent<Props, State> {
           <Text style={styles.typeSummary} numberOfLines={6}>{item.summary}</Text>
         </View>
         <View style={styles.typeImageContainer}>
-          <Image source={require('../../assets/mbti-icon.png')} style={styles.typeImage} resizeMode={'contain'}/>
+          <Image
+            source={pics[item.aka]}
+            style={styles.typeImage}
+            resizeMode={'contain'} />
         </View>
       </TouchableOpacity>
     )
