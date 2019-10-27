@@ -5,5 +5,6 @@ export default {
     profile: 'Profile',
     startTheTest: 'Start the test',
     next: 'Next',
+    types: 'Types',
   },
 };

@@ -20,3 +20,9 @@ export interface UserType {
     [key in Dichotomy]: number
   }
 }
+
+export interface MbtiTypeItem {
+  aka: string;
+  name: string;
+  summary: string;
+}

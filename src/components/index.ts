@@ -5,6 +5,7 @@ import HomeBeforeTest from './HomeBeforeTest';
 import QuestionDisplay from './QuestionDisplay';
 import IntensityPicker from './IntensityPicker';
 import ProgressBar from './ProgressBar';
+import BaseComponent from './BaseComponent';
 
 export {
   TabBar,
@@ -14,4 +15,5 @@ export {
   QuestionDisplay,
   IntensityPicker,
   ProgressBar,
+  BaseComponent,
 }
