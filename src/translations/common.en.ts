@@ -4,5 +4,6 @@ export default {
     home: 'Home',
     startTheTest: 'Start the test',
     next: 'Next',
+    types: 'Types',
   },
 };

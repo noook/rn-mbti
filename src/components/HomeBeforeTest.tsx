@@ -14,7 +14,7 @@ interface State {}
 export default class HomeBeforeTest extends BaseComponent<Props, State> {
   render() {
     return (
-      <Container style={styles.container}>
+      <Container>
         <Text style={styles.title}>{this.$t('common.home')}</Text>
         <View style={styles.centeredView}>
           <TouchableOpacity

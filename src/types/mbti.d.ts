@@ -13,3 +13,16 @@ export interface MbtiQuestion {
 export type MbtiResults = {
   [key in Dichotomy]: number;
 }
+
+export interface UserType {
+  type: string;
+  ratios: {
+    [key in Dichotomy]: number
+  }
+}
+
+export type MbtiTypeItem = {
+  aka: string;
+  name: string;
+  summary: string;
+}
