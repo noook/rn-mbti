@@ -30,11 +30,8 @@ export default class ProfileScreen extends Component<Props, State> {
 
   async updateType() {
     try {
-      const plop  = await StorageHelper.getItem<UserType>('userType', JSON.parse);
-      console.log(plop)
-      const { type, ratios } = plop;
+      const { type, ratios }  = await StorageHelper.getItem<UserType>('userType', JSON.parse);
       this.setState({ type, ratios, loaded: true });
-      console.log(this.state);
     } catch (e) {
       console.error(e);
     }
