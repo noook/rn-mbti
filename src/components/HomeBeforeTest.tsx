@@ -6,7 +6,9 @@ import styles from './styles/HomeBeforeTestStyle';
 import BaseComponent from './BaseComponent';
 
 interface Props {
-  navigation: NavigationStackProp;
+  navigation: NavigationStackProp<{
+    onTestCompleted: () => void;
+  }>;
 }
 
 interface State {}

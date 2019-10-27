@@ -1,35 +1,36 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { NavigationStackScreenProps } from 'react-navigation-stack';
 import ProgressBar from './ProgressBar';
 import Container from './Container';
 import IntensityPicker, { IntensityPickerItem } from './IntensityPicker';
 import styles from './styles/QuestionDisplayStyles';
 import { questions } from '@/resources/questions.json';
-import { MbtiQuestion, Dichotomy } from '@/types/mbti';
+import { MbtiQuestion, Dichotomy, MbtiResults } from '@/types/mbti';
 import { positiveValue } from '@/helper/numbers';
 import { initResults } from '@/helper/mbti';
 import { shuffle } from '@/helper/utils';
 import BaseComponent from './BaseComponent';
+import StorageHelper from '@/helper/storage';
 
 interface Props {
-  navigation: NavigationStackProp
+  onTestCompleted: () => void;
 }
 
 interface State {
   step: number;
   selected?: IntensityPickerItem;
   currentQuestions: [MbtiQuestion, MbtiQuestion];
-  results?: {
-    [key in Dichotomy]: number;
-  }
+  results?: MbtiResults;
 }
 
-export default class QuestionDisplay extends BaseComponent<Props, State> {
+export default class QuestionDisplay extends BaseComponent<
+  NavigationStackScreenProps<{}, Props>, State
+> {
 
   private questions: MbtiQuestion[][] = shuffle(questions);
 
-  public constructor(props: Props) {
+  public constructor(props: NavigationStackScreenProps<{}, Props>) {
     super(props);
     
     this.state = {
@@ -98,10 +99,21 @@ export default class QuestionDisplay extends BaseComponent<Props, State> {
       selected: undefined,
       currentQuestions: this.getQuestion(nextStep),
     });
+    StorageHelper.setItem('results', JSON.stringify(this.state.results));
   }
 
-  endTest() {
-    console.log(this.state.results); 
-    // Handle Test end
+  async endTest() {
+    const { results } = this.state; 
+    const couples: [Dichotomy, Dichotomy][] = [['E', 'I'], ['N', 'S'], ['F', 'T'], ['P', 'J']];
+    let result: string = '';
+
+    couples.forEach((couple: [Dichotomy, Dichotomy]) => {
+      result += couple.sort((a: Dichotomy, b: Dichotomy) => results[b] - results[a]).shift();
+    });
+
+    await StorageHelper.setItem('userType', JSON.stringify({ type: result, ratios: { ...results }}));
+
+    this.props.navigation.popToTop();
+    this.props.screenProps.onTestCompleted();
   }
 }
