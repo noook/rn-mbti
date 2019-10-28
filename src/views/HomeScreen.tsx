@@ -11,7 +11,14 @@ interface State {}
 export default class HomeScreen extends Component<Props, State> {
   render() {
     return (
-      <StackContainer />
+      <StackContainer
+        screenProps={{
+          onTestCompleted: () => this.goToProfile(),
+        }} />
     );
+  }
+
+  goToProfile() {
+    this.props.navigation.navigate('Profile');
   }
 }

@@ -6,7 +6,9 @@ import styles from './styles/HomeBeforeTestStyle';
 import BaseComponent from './BaseComponent';
 
 interface Props {
-  navigation: NavigationStackProp;
+  navigation: NavigationStackProp<{
+    onTestCompleted: () => void;
+  }>;
 }
 
 interface State {}
@@ -14,7 +16,7 @@ interface State {}
 export default class HomeBeforeTest extends BaseComponent<Props, State> {
   render() {
     return (
-      <Container style={styles.container}>
+      <Container>
         <Text style={styles.title}>{this.$t('common.home')}</Text>
         <View style={styles.centeredView}>
           <TouchableOpacity

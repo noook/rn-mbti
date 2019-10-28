@@ -9,26 +9,13 @@ const HomeStack = createStackNavigator({
       header: null,
     }
   },
+  QuestionDisplay: {
+    screen: QuestionDisplay,
+  },
 },{
   initialRouteName: 'Home',
+  mode: 'modal',
+  headerMode: 'none',
 });
 
-const RootStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeStack,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    QuestionDisplay: {
-      screen: QuestionDisplay,
-    },
-  },
-  {
-    mode: 'modal',
-    headerMode: 'none',
-  }
-);
-
-export default createAppContainer(RootStack);
+export default HomeStack;
