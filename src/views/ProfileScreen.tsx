@@ -66,28 +66,34 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
 
   render() {
     const { type, loaded, testDone } = this.state;
-    const view = (
-      <ScrollView>
-        <Container style={styles.container}>
-          <Text style={styles.title}>{this.$t('common.profile')}</Text>
-          <Image style={styles.illustration} source={pics[type]} resizeMode={'contain'} />
-          <Text style={styles.type}>{type}</Text>
-          <Text style={styles.aka}>{this.$t(`mbti.typeAka.${type}`)}</Text>
-          <DichotomyGauge type={type} ratios={this.state.ratios} />
-        </Container>
-      </ScrollView>
-    );
+    let view = null;
 
     if (!loaded) {
-      return (
+      view = (
         <View style={styles.centeredView}>
           <ActivityIndicator size={'large'} color={Colors.green} />
         </View>
       );
     } else if (loaded && !testDone) {
-      return <Text>Error go take the test you faggot</Text>
+      view = <Text>Error go take the test you faggot</Text>
     } else {
-      return view;
+      view = (
+        <View>
+          <Image style={styles.illustration} source={pics[type]} resizeMode={'contain'} />
+          <Text style={styles.type}>{type}</Text>
+          <Text style={styles.aka}>{this.$t(`mbti.typeAka.${type}`)}</Text>
+          <DichotomyGauge type={type} ratios={this.state.ratios} />
+        </View>
+      );
     }
+
+    return (
+      <Container style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <Text style={styles.title}>{this.$t('common.profile')}</Text>
+          {view}
+        </ScrollView>
+      </Container>
+    );
   }
 }

@@ -41,4 +41,7 @@ export default StyleSheet.create({
     color: '#ffffff',
     fontSize: 24,
   },
+  scrollView: {
+    marginHorizontal: 20,
+  }
 });
