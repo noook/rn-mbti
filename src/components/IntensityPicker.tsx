@@ -46,6 +46,7 @@ export default class IntensityPicker extends Component<Props, State> {
             activeOpacity={1}
             key={el.position}
             onPress={() => this.updateSelected(el)}
+            hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
             style={[
               styles.round,
               { borderColor: el.color }, 
