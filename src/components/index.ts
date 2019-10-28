@@ -6,6 +6,7 @@ import QuestionDisplay from './QuestionDisplay';
 import IntensityPicker from './IntensityPicker';
 import ProgressBar from './ProgressBar';
 import BaseComponent from './BaseComponent';
+import DichotomyGauge from './DichotomyGauge';
 
 export {
   TabBar,
@@ -16,4 +17,5 @@ export {
   IntensityPicker,
   ProgressBar,
   BaseComponent,
+  DichotomyGauge,
 }

@@ -5,6 +5,7 @@ export default StyleSheet.create({
   container: {
     paddingTop: Platform.select({ ios: 0, android: StatusBar.currentHeight }),
     height: '100%',
+    paddingHorizontal: 15,
   },
   centeredView: {
     display: 'flex',

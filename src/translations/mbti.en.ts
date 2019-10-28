@@ -5,6 +5,28 @@ export default {
     typeResult: 'Your type is {:type} !',
     akaBase: 'Also know as: {:alias}',
     detailLink: 'You can read more details on your personnality on this link: https://www.16personalities.com/{:type}-personality',
+    coupleName: {
+      mind: 'Mind',
+      energy: 'Energy',
+      nature: 'Nature',
+      tactics: 'Tactics',
+    },
+    dichotomy: {
+      E: 'Extraverted',
+      I: 'Introverted',
+      N: 'Intuitive',
+      S: 'Observant',
+      T: 'Thinking',
+      F: 'Feeling',
+      P: 'Prospecting',
+      J: 'Judging',
+    },
+    coupleDescription: {
+      mind: 'This trait determines how we interact with our environment.',
+      energy: 'This trait shows where we direct our mental energy.',
+      nature: 'This trait determines how we make decisions and cope with emotions.',
+      tactics: 'This trait reflects our approach to work, planning and decision-making.',
+    },
     typeAka: {
       ISFP: 'The Adventurer',
       ISTP: 'The Virtuoso',

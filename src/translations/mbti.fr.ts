@@ -5,6 +5,28 @@ export default {
     typeResult: 'Tu es de type {:type} !',
     akaBase: 'Aussi connu comme: {:alias}',
     detailLink: 'Plus de détails sur ton type de personnalité dans ce lien: https://www.16personalities.com/fr/la-personnalite-{:type}',
+    coupleName: {
+      mind: 'Esprit',
+      energy: 'Energie',
+      nature: 'Nature',
+      tactics: 'Stratégies',
+    },
+    dichotomy: {
+      E: 'Extraverted',
+      I: 'Introverted',
+      N: 'Intuitive',
+      S: 'Observant',
+      T: 'Thinking',
+      F: 'Feeling',
+      P: 'Prospecting',
+      J: 'Judging',
+    },
+    coupleDescription: {
+      mind: 'Cette caractéristique détermine la façon dont on intéragit avec notre environnement.',
+      energy: 'Catte caractéristique montre où nous dirigeons notre énérgie mentale.',
+      nature: 'Cette caractéristique détermine comment nous prenons décisions et faisons face à nos émotions.',
+      tactics: 'Cette caractéristique reflète notre approche du travail, de la planification et de la prise de décision.',
+    },
     typeAka: {
       ISFP: 'L\'Aventurier',
       ISTP: 'Le Virtuose',

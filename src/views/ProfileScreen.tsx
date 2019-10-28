@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
-import { Container } from '@/components';
+import { Container, DichotomyGauge, BaseComponent } from '@/components';
 import styles from './styles/ProfileScreenStyles';
 import StorageHelper from '@/helper/storage';
 import { UserType, Dichotomy } from '@/types/mbti';
-import BaseComponent from '@/components/BaseComponent';
+import { initResults } from '@/helper/mbti';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -16,7 +16,7 @@ interface State {
   testDone: boolean,
   type: string;
   ratios: {
-    [key in Dichotomy]?: number;
+    [key in Dichotomy]: number;
   }
 }
 
@@ -26,14 +26,14 @@ interface State {
 const mock: UserType = {
   type: 'ISTP',
   ratios: {
-    E: 21,
-    F: 21,
-    I: 12,
-    J: 9,
-    N: 18,
+    E: 12,
+    I: 21,
+    N: 15,
+    S: 25,
+    F: 8,
+    T: 18,
     P: 24,
-    S: 15,
-    T: 12,
+    J: 6,
   },
 };
 
@@ -45,7 +45,7 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
       loaded: false,
       testDone: true,
       type: '',
-      ratios: {},
+      ratios: initResults(),
     }
   }
 
@@ -69,6 +69,7 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
         <Text style={styles.title}>{this.$t('common.profile')}</Text>
         <Text>{this.$t(`mbti.typeAka.${type}`)}</Text>
         <Text>{type}</Text>
+        <DichotomyGauge type={type} ratios={this.state.ratios} />
       </Container>
     );
 
