@@ -3,7 +3,7 @@ import { Colors } from '@/constants';
 
 export default StyleSheet.create({
   container: {
-    marginVertical: 15,
+    marginVertical: 10,
   },
   spacer: {
     flexGrow: 1,
@@ -34,6 +34,7 @@ export default StyleSheet.create({
   percentage: {
     fontSize: 15,
     lineHeight: 15,
+    color: Colors.gray,
     fontWeight: '500',
   },
   value: {

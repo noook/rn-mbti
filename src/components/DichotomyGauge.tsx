@@ -28,7 +28,8 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
   }
 
   getWidth(couple: [GaugeSettingsField, GaugeSettingsField]): number {
-    const highest = [...couple]
+    const highest = couple
+      .concat()
       .sort((a, b) => this.getPercentage(b.dichotomy) - this.getPercentage(a.dichotomy));
     return this.getPercentage(highest[0].dichotomy);
   }
@@ -43,7 +44,12 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
           <Text style={styles.coupleDescription}>{this.$t(`mbti.coupleDescription.${entry.name}`)}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.percentage}>{this.getPercentage(entry.fields[0].dichotomy)}%</Text>
+          <Text style={[
+              styles.percentage,
+              type.includes(entry.fields[0].dichotomy) && { color: entry.color },
+            ]}>
+              {this.getPercentage(entry.fields[0].dichotomy)}%
+          </Text>
           <View style={styles.gauge}>
             <View style={
               type.includes(entry.fields[1].dichotomy) && styles.spacer
@@ -55,11 +61,26 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
               { width: `${this.getWidth(entry.fields)}%`},
             ]} />
           </View>
-          <Text style={styles.percentage}>{this.getPercentage(entry.fields[1].dichotomy)}%</Text>
+          <Text style={[
+            styles.percentage,
+            type.includes(entry.fields[1].dichotomy) && { color: entry.color },
+          ]}>
+            {this.getPercentage(entry.fields[1].dichotomy)}%
+          </Text>
         </View>
         <View style={[styles.row, styles.legendContainer]}>
-          <Text style={styles.legend}>{this.$t(`mbti.dichotomy.${entry.fields[0].dichotomy}`)}</Text>
-          <Text style={styles.legend}>{this.$t(`mbti.dichotomy.${entry.fields[1].dichotomy}`)}</Text>
+          <Text style={[
+            styles.legend,
+            type.includes(entry.fields[0].dichotomy) && { color: entry.color },
+          ]}>
+            {this.$t(`mbti.dichotomy.${entry.fields[0].dichotomy}`)}
+          </Text>
+          <Text style={[
+            styles.legend,
+            type.includes(entry.fields[1].dichotomy) && { color: entry.color },
+          ]}>
+            {this.$t(`mbti.dichotomy.${entry.fields[1].dichotomy}`)}
+          </Text>
         </View>
       </View>
     ));

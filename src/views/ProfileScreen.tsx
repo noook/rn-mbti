@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Image, ScrollView, ActivityIndicator, View } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { Container, DichotomyGauge, BaseComponent } from '@/components';
 import styles from './styles/ProfileScreenStyles';
 import StorageHelper from '@/helper/storage';
 import { UserType, Dichotomy } from '@/types/mbti';
 import { initResults } from '@/helper/mbti';
+import { pics } from '@/constants/Mbti';
+import { Colors } from '@/constants';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -65,16 +67,23 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
   render() {
     const { type, loaded, testDone } = this.state;
     const view = (
-      <Container style={styles.container}>
-        <Text style={styles.title}>{this.$t('common.profile')}</Text>
-        <Text>{this.$t(`mbti.typeAka.${type}`)}</Text>
-        <Text>{type}</Text>
-        <DichotomyGauge type={type} ratios={this.state.ratios} />
-      </Container>
+      <ScrollView>
+        <Container style={styles.container}>
+          <Text style={styles.title}>{this.$t('common.profile')}</Text>
+          <Image style={styles.illustration} source={pics[type]} resizeMode={'contain'} />
+          <Text style={styles.type}>{type}</Text>
+          <Text style={styles.aka}>{this.$t(`mbti.typeAka.${type}`)}</Text>
+          <DichotomyGauge type={type} ratios={this.state.ratios} />
+        </Container>
+      </ScrollView>
     );
 
     if (!loaded) {
-      return <Text>Loading...</Text>;
+      return (
+        <View style={styles.centeredView}>
+          <ActivityIndicator size={'large'} color={Colors.green} />
+        </View>
+      );
     } else if (loaded && !testDone) {
       return <Text>Error go take the test you faggot</Text>
     } else {
