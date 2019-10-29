@@ -64,13 +64,13 @@ export class Translator {
 
   public trans(key: string, params?: TranslatorParam): string {
     let translation = this.deepTrans(key.split('.'), this.translations[this.deviceLanguage]);
-    if (!params) return translation;
+    if (!params) return translation.trim();
 
     Object.entries(params).forEach(([key, value]) => {
       translation = translation.replace(`{:${key}}`, value.toString());
     });
 
-    return translation;
+    return translation.trim();
   }
 }
 

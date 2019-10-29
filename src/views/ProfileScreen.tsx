@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, ScrollView, ActivityIndicator, View } from 'react-native';
+import { Text, Image, ScrollView, ActivityIndicator, View, ShadowPropTypesIOS } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { Container, DichotomyGauge, BaseComponent } from '@/components';
 import styles from './styles/ProfileScreenStyles';
@@ -83,17 +83,19 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
           <Text style={styles.type}>{type}</Text>
           <Text style={styles.aka}>{this.$t(`mbti.typeAka.${type}`)}</Text>
           <DichotomyGauge type={type} ratios={this.state.ratios} />
+          <Text style={styles.summaryTitle}>{this.$t('common.summary')}:</Text>
+          <Text style={styles.summaryParagraph}>{this.$t(`mbti.summaries.${type}`)}</Text>
         </View>
       );
     }
 
     return (
-      <Container style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollView}>
-          <Text style={styles.title}>{this.$t('common.profile')}</Text>
-          {view}
-        </ScrollView>
-      </Container>
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        <Container style={styles.container}>
+            <Text style={styles.title}>{this.$t('common.profile')}</Text>
+            {view}
+        </Container>
+      </ScrollView>
     );
   }
 }

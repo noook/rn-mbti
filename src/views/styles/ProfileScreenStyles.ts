@@ -5,7 +5,6 @@ export default StyleSheet.create({
   container: {
     paddingTop: Platform.select({ ios: 0, android: StatusBar.currentHeight }),
     height: '100%',
-    marginHorizontal: 15,
   },
   centeredView: {
     display: 'flex',
@@ -43,5 +42,18 @@ export default StyleSheet.create({
   },
   scrollView: {
     marginHorizontal: 20,
-  }
+  },
+
+  summaryTitle: {
+    fontSize: 24,
+    fontWeight: '400',
+    marginTop: 15,
+  },
+
+  summaryParagraph: {
+    fontSize: 16,
+    marginVertical: 10,
+    lineHeight: 20,
+    textAlign: 'justify',
+  },
 });

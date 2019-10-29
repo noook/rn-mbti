@@ -6,5 +6,6 @@ export default {
     startTheTest: 'Start the test',
     next: 'Next',
     types: 'Types',
+    summary: 'Summary',
   },
 };

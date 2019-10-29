@@ -19,12 +19,14 @@ export default StyleSheet.create({
   typeAka: {
     fontSize: 26,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 
   typeTitle: {
     color: 'grey',
     fontSize: 16,
-    marginBottom: 20
+    marginBottom: 20,
+    textAlign: 'center',
   },
   
   typeInfo: {
@@ -32,13 +34,16 @@ export default StyleSheet.create({
   },
 
   typeImage: {
-    width: '75%',
-    height: '100%',
+    height: 200,
+    marginVertical: 20,
     alignSelf: 'center'
   },
 
   typeSummary: {
-    fontSize: 14,
+    fontSize: 16,
+    marginVertical: 10,
+    lineHeight: 20,
+    textAlign: 'justify',
   },
 
   backButton: {

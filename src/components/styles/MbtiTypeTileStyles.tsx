@@ -17,13 +17,13 @@ export default StyleSheet.create({
   },
 
   typeAka: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold'
   },
 
   typeTitle: {
     color: 'grey',
-    fontSize: 12
+    fontSize: 16,
   },
   
   typeInfo: {
@@ -47,7 +47,9 @@ export default StyleSheet.create({
 
   typeSummary: {
     overflow: 'hidden',
-    fontSize: 10,
+    fontSize: 14,
+    textAlign: 'justify',
     maxWidth: '100%',
+    marginVertical: 5,
   }
 });

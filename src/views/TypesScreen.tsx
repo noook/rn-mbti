@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, FlatList, ActivityIndicator, View } from 'react-native';
+import { Text, FlatList, ActivityIndicator } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { Container, BaseComponent, MbtiTypeTile, TypeModal } from '@/components';
 import styles from './styles/TypesScreenStyles';
@@ -38,15 +38,11 @@ export default class TypesScreen extends BaseComponent<Props, State> {
   }
 
   public getTypes(): void {
-    let formattedTypes: MbtiTypeItem[] = [];
-
-    types.forEach(type => {
-      formattedTypes.push({
-        aka: type,
-        name: this.$t(`mbti.typeAka.${type}`),
-        summary: this.$t(`mbti.summaries.${type}`),
-      });
-    });
+    let formattedTypes: MbtiTypeItem[] = types.map(type => ({
+      aka: type,
+      name: this.$t(`mbti.typeAka.${type}`),
+      summary: this.$t(`mbti.summaries.${type}`),
+    }));
 
     this.setState({ types: formattedTypes, isLoading: false });
   }
