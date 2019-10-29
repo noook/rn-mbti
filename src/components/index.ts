@@ -7,6 +7,8 @@ import IntensityPicker from './IntensityPicker';
 import ProgressBar from './ProgressBar';
 import BaseComponent from './BaseComponent';
 import DichotomyGauge from './DichotomyGauge';
+import MbtiTypeTile from './MbtiTypeTile';
+import TypeModal from './TypeModal';
 
 export {
   TabBar,
@@ -18,4 +20,6 @@ export {
   ProgressBar,
   BaseComponent,
   DichotomyGauge,
+  MbtiTypeTile,
+  TypeModal,
 }

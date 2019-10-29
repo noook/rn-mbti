@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, FlatList, ActivityIndicator } from 'react-native';
+import { Text, FlatList, ActivityIndicator, View } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
-import { Container, BaseComponent } from '@/components';
+import { Container, BaseComponent, MbtiTypeTile, TypeModal } from '@/components';
 import styles from './styles/TypesScreenStyles';
 import { MbtiTypeItem } from '@/types/mbti';
-import MbtiTypeTile from '@/components/MbtiTypeTile';
 import { types } from '@/constants/Mbti';
 
 interface Props {
@@ -14,6 +13,8 @@ interface Props {
 interface State {
   types: MbtiTypeItem[];
   isLoading: boolean;
+  isModalVisible: boolean;
+  selectedType: MbtiTypeItem;
 }
 
 export default class TypesScreen extends BaseComponent<Props, State> {
@@ -22,7 +23,14 @@ export default class TypesScreen extends BaseComponent<Props, State> {
     this.state = {
       types: [],
       isLoading: true,
+      isModalVisible: false,
+      selectedType: {
+        aka: '',
+        name: '',
+        summary: ''
+      }
     };
+    this.renderTypeItem = this.renderTypeItem.bind(this);
   }
 
   componentDidMount() {
@@ -51,13 +59,20 @@ export default class TypesScreen extends BaseComponent<Props, State> {
 
   public renderTypeItem({ item, index }) {
     return (
-      <MbtiTypeTile item={item} key={index} onPress={() => {}}/>
+      <MbtiTypeTile item={item} key={index} onPress={() => {
+        this.setState({ isModalVisible: true, selectedType: item });
+      }}/>
     );
   }
 
   render() {
     return (
       <Container>
+        <TypeModal
+          isVisible={this.state.isModalVisible}
+          type={this.state.selectedType}
+          onBackPress={() => this.setState({ isModalVisible: false })}
+        />
         <Text style={styles.title}>{this.$t('common.types')}</Text>
         {this.state.isLoading === true ?
           <ActivityIndicator size={'large'} color={'#000'}/>
