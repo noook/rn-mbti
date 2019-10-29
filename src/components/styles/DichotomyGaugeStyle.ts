@@ -22,10 +22,11 @@ export default StyleSheet.create({
   gauge: {
     borderRadius: 10,
     height: 15,
-    marginHorizontal: 15,
+    marginHorizontal: 10,
     flexGrow: 1,
     flexDirection: 'row',
     backgroundColor: '#F5F5F5',
+    flexBasis: 1,
   },
   row: {
     flexDirection: 'row',
@@ -34,11 +35,19 @@ export default StyleSheet.create({
   percentage: {
     fontSize: 15,
     lineHeight: 15,
+    width: 40,
     color: Colors.gray,
     fontWeight: '500',
   },
+  percentageLeft: {
+    textAlign: 'left',
+  },
+  percentageRight: {
+    textAlign: 'right',
+  },
   value: {
     height: '100%',
+    borderRadius: 20,
   },
   valueLeft: {
     borderTopLeftRadius: 10,

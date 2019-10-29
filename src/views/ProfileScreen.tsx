@@ -67,6 +67,7 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
     this.focusListener = this.props.navigation.addListener('didFocus', () => {
       this.updateType();
     });
+    this.updateType();
   }
 
   componentWillUnmount() {

@@ -15,9 +15,7 @@ import StorageHelper from '@/helper/storage';
 import { couples } from '@/constants/Mbti';
 import QuestionGroup from './QuestionGroup';
 
-interface Props {
-  onTestCompleted: () => void;
-}
+interface Props {}
 
 interface State {
   answers: {
@@ -34,6 +32,7 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
     }));
 
   private testLength: number = this.questions.length;
+  private scrollListReftop: ScrollView;
 
   public constructor(props: NavigationStackScreenProps<{}, Props>) {
     super(props);
@@ -51,15 +50,9 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
   render() {
     return (
       <Container style={styles.container}>
-        <View style={styles.centeredView}>
-          {/* <Text style={styles.questionProgress}>
-            {this.$t('common.questionProgress', {
-              progress: `${this.state.step} / ${this.questions.length}`,
-            })}
-          </Text> */}
-        </View>
         <ScrollView
           style={styles.scrollView}
+          ref={ref => { this.scrollListReftop = ref }}
           contentContainerStyle={[styles.centeredView, styles.scrollViewContent]}>
           { this.state.set.map((el: MbtiTestQuestion) => (
             <QuestionGroup
@@ -102,6 +95,7 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
       return this.endTest();
     }
     this.setState({ set: this.questions.splice(0, 4) });
+    this.scrollListReftop.scrollTo({ x: 0, y: 0, animated: true });
   }
 
   async endTest() {
@@ -113,13 +107,13 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
       ratios[answer.letter] += positiveValue(answer.position);
     });
 
-    couples.forEach((couple: [Dichotomy, Dichotomy]) => {
-      type += couple.sort((a: Dichotomy, b: Dichotomy) => ratios[b] - ratios[a]).shift();
+    [...couples].forEach((couple: [Dichotomy, Dichotomy]) => {
+      type += couple.sort((a: Dichotomy, b: Dichotomy) => ratios[b] - ratios[a])[0];
     });
 
     await StorageHelper.setItem('userType', JSON.stringify({ type, ratios }));
 
     this.props.navigation.popToTop();
-    this.props.screenProps.onTestCompleted();
+    this.props.navigation.navigate('Profile');
   }
 }

@@ -11,10 +11,7 @@ interface State {}
 export default class HomeScreen extends Component<Props, State> {
   render() {
     return (
-      <StackContainer
-        screenProps={{
-          onTestCompleted: () => this.goToProfile(),
-        }} />
+      <StackContainer />
     );
   }
 
