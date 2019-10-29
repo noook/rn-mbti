@@ -14,14 +14,29 @@ export enum TranslatorLangs {
   EN = 'en',
 }
 
+function getSystemLocale(): string {
+  let locale: string;
+  if (
+    NativeModules.SettingsManager &&
+    NativeModules.SettingsManager.settings &&
+    NativeModules.SettingsManager.settings.AppleLanguages
+  ) {
+    locale = NativeModules.SettingsManager.settings.AppleLanguages[0];
+  } else if (NativeModules.I18nManager) {
+    locale = NativeModules.I18nManager.localeIdentifier;
+  }
+
+  if (typeof locale === 'undefined') {
+    console.log('Couldnt get locale');
+    return 'fr';
+  }
+
+  return locale.split('_')[0];
+}
+
 export class Translator {
   private translations: Translations;
-  public deviceLanguage: string = (() => {
-    const locale: string = Platform.OS === 'ios'
-      ? NativeModules.SettingsManager.settings.AppleLocale
-      : NativeModules.I18nManager.localeIdentifier;
-      return (locale === 'fr' ?  'fr' : 'en').split('_')[0];
-  })();
+  public deviceLanguage: string = getSystemLocale();
 
   constructor() {
     this.translations = {
