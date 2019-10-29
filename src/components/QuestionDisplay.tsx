@@ -32,7 +32,7 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
     }));
 
   private testLength: number = this.questions.length;
-  private scrollListReftop: ScrollView;
+  private scrollViewRef: ScrollView;
 
   public constructor(props: NavigationStackScreenProps<{}, Props>) {
     super(props);
@@ -52,7 +52,7 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
       <Container style={styles.container}>
         <ScrollView
           style={styles.scrollView}
-          ref={ref => { this.scrollListReftop = ref }}
+          ref={ref => { this.scrollViewRef = ref }}
           contentContainerStyle={[styles.centeredView, styles.scrollViewContent]}>
           { this.state.set.map((el: MbtiTestQuestion) => (
             <QuestionGroup
@@ -95,7 +95,7 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
       return this.endTest();
     }
     this.setState({ set: this.questions.splice(0, 4) });
-    this.scrollListReftop.scrollTo({ x: 0, y: 0, animated: true });
+    this.scrollViewRef.scrollTo({ x: 0, y: 0, animated: true });
   }
 
   async endTest() {
