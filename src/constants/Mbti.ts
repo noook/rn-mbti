@@ -1,4 +1,4 @@
-import { Dichotomy } from '@/types/mbti';
+import { Dichotomy, GaugeSettings } from '@/types/mbti';
 
 const ISFP = require('../../assets/types/isfp.png');
 const ISTP = require('../../assets/types/istp.png');
@@ -24,7 +24,44 @@ export const types: string[] = [
   'INFP', 'ISFJ', 'ESTP', 'ESFP',
 ];
 
-export const couples: [Dichotomy, Dichotomy][] = [['E', 'I'], ['N', 'S'], ['F', 'T'], ['P', 'J']];
+export const gaugeSettings: GaugeSettings = [
+  {
+    name: 'mind',
+    color: '#51A9AB',
+    fields: [
+      { dichotomy: 'E' },
+      { dichotomy: 'I' },
+    ],
+  },
+  {
+    name: 'energy',
+    color: '#E2A942',
+    fields: [
+      { dichotomy: 'N' },
+      { dichotomy: 'S' },
+    ],
+  },
+  {
+    name: 'nature',
+    color: '#56AC8A',
+    fields: [
+      { dichotomy: 'T' },
+      { dichotomy: 'F' },
+    ],
+  },
+  {
+    name: 'tactics',
+    color: '#CFA0B6',
+    fields: [
+      { dichotomy: 'J' },
+      { dichotomy: 'P' },
+    ],
+  },
+];
+
+export const couples: [Dichotomy, Dichotomy][] = [
+  ['E', 'I'], ['N', 'S'], ['T', 'F'], ['J', 'P']
+];
 
 export const pics = {
   ISFP, ISTP, ISTJ, INTJ,

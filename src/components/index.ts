@@ -6,6 +6,7 @@ import QuestionDisplay from './QuestionDisplay';
 import IntensityPicker from './IntensityPicker';
 import ProgressBar from './ProgressBar';
 import BaseComponent from './BaseComponent';
+import DichotomyGauge from './DichotomyGauge';
 import MbtiTypeTile from './MbtiTypeTile';
 import TypeModal from './TypeModal';
 
@@ -18,6 +19,7 @@ export {
   IntensityPicker,
   ProgressBar,
   BaseComponent,
+  DichotomyGauge,
   MbtiTypeTile,
   TypeModal,
 }

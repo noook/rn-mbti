@@ -21,6 +21,16 @@ export interface UserType {
   }
 }
 
+export interface GaugeSettingsField {
+  dichotomy: Dichotomy;
+}
+
+export type GaugeSettings = {
+  name: string;
+  color: string;
+  fields: [GaugeSettingsField, GaugeSettingsField];
+}[]
+
 export interface MbtiTypeItem {
   aka: string;
   name: string;
