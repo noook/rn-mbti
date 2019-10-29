@@ -5,11 +5,12 @@ import { positiveValue } from '@/helper/numbers';
 
 interface Props {
   style?: StyleProp<ViewStyle>
-  value: IntensityPickerItem;
   onChange: (item: IntensityPickerItem) => void;
 }
 
-interface State {}
+interface State {
+  value?: IntensityPickerItem;
+}
 
 export interface IntensityPickerItem {
   position: number;
@@ -26,14 +27,20 @@ export default class IntensityPicker extends Component<Props, State> {
     { position: 3, color: '#B06AB3' },
   ];
 
-  updateSelected(selected: IntensityPickerItem) {
-    this.setState({ selected });
-    this.props.onChange(selected);
+  public constructor(props: Props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  updateSelected(value: IntensityPickerItem) {
+    this.setState({ value });
+    this.props.onChange(value);
   }
 
   isSelected(position: number): StyleProp<ViewStyle> | null {
-    if (!this.props.value) return null;
-    return this.props.value.position === position ?
+    if (!this.state.value) return null;
+    return this.state.value.position === position ?
       styles[`size${positiveValue(position)}Inner`] :
       null;
   }

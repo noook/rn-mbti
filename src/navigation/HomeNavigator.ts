@@ -5,14 +5,14 @@ import { createAppContainer } from 'react-navigation';
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeBeforeTest,
-    navigationOptions: {
-      header: null,
-    }
   },
   QuestionDisplay: {
     screen: QuestionDisplay,
   },
 },{
+  defaultNavigationOptions: {
+    header: null,
+  },
   initialRouteName: 'Home',
   mode: 'modal',
   headerMode: 'none',
