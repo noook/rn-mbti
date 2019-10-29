@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, ScrollView, ActivityIndicator, View, ShadowPropTypesIOS } from 'react-native';
+import { Text, Image, ScrollView, ActivityIndicator, View, TouchableOpacity, Share } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { Container, DichotomyGauge, BaseComponent } from '@/components';
 import styles from './styles/ProfileScreenStyles';
@@ -8,6 +8,7 @@ import { UserType, Dichotomy } from '@/types/mbti';
 import { initResults } from '@/helper/mbti';
 import { pics } from '@/constants/Mbti';
 import { Colors } from '@/constants';
+import { FontAwesome5 as Icon } from '@expo/vector-icons';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -64,6 +65,17 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
     this.updateType();
   }
 
+  shareTestResults() {
+    const { type } = this.state;
+    Share.share({
+      message: `https://www.16personalities.com/${type.toLowerCase()}-personality`,
+      title: this.$t('common.profile.share_text'),
+      url: `https://www.16personalities.com/${type.toLowerCase()}-personality` // only ios
+    }, {
+
+    });
+  }
+
   render() {
     const { type, loaded, testDone } = this.state;
     let view = null;
@@ -79,7 +91,12 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
     } else {
       view = (
         <View>
-          <Image style={styles.illustration} source={pics[type]} resizeMode={'contain'} />
+          <View>
+            <Image style={styles.illustration} source={pics[type]} resizeMode={'contain'} />
+            <TouchableOpacity onPress={() => this.shareTestResults()} style={styles.shareButton}>
+              <Icon name={'share-square'} style={styles.shareButtonIcon} />
+            </TouchableOpacity>
+          </View>
           <Text style={styles.type}>{type}</Text>
           <Text style={styles.aka}>{this.$t(`mbti.typeAka.${type}`)}</Text>
           <DichotomyGauge type={type} ratios={this.state.ratios} />
@@ -92,7 +109,7 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
     return (
       <ScrollView contentContainerStyle={styles.scrollView}>
         <Container style={styles.container}>
-            <Text style={styles.title}>{this.$t('common.profile')}</Text>
+            <Text style={styles.title}>{this.$t('common.profile.title')}</Text>
             {view}
         </Container>
       </ScrollView>
