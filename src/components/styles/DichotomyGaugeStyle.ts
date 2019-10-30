@@ -49,14 +49,6 @@ export default StyleSheet.create({
     height: '100%',
     borderRadius: 20,
   },
-  valueLeft: {
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-  },
-  valueRight: {
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-  },
   legendContainer: {
     marginTop: 5,
     justifyContent: 'space-between',

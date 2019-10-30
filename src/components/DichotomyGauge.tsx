@@ -58,7 +58,6 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
             } />
             <View style={[
               styles.value,
-              type.includes(entry.fields[0].dichotomy) ? styles.valueLeft : styles.valueRight,
               { backgroundColor: entry.color },
               { width: `${this.getWidth(entry.fields)}%`},
             ]} />
