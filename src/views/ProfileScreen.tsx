@@ -9,6 +9,7 @@ import { initResults } from '@/helper/mbti';
 import { pics } from '@/constants/Mbti';
 import { Colors } from '@/constants';
 import { FontAwesome5 as Icon } from '@expo/vector-icons';
+import { NavigationEventSubscription } from 'react-navigation';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -41,12 +42,14 @@ const mock: UserType = {
 };
 
 export default class ProfileScreen extends BaseComponent<Props, State> {
+  private focusListener: NavigationEventSubscription;
+
   public constructor(props: Props) {
     super(props);
 
     this.state = {
       loaded: false,
-      testDone: true,
+      testDone: false,
       type: '',
       ratios: initResults(),
     }
@@ -55,14 +58,20 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
   async updateType() {
     try {
       const { type, ratios } = await StorageHelper.getItem<UserType>('userType', JSON.parse);
-      this.setState({ type, ratios, loaded: true });
+      this.setState({ type, ratios, loaded: true, testDone: true });
     } catch (e) {
       this.setState({ testDone: false, loaded: true });
     }
   }
 
-  async componentDidMount() {
-    this.updateType();
+  componentDidMount() {
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.updateType();
+    });
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
   }
 
   shareTestResults() {

@@ -4,7 +4,7 @@ import { Metrics, Colors } from '@/constants'
 export default StyleSheet.create({
   container: {
     width: '100%',
-    height: 3,
+    height: 4,
   },
   bar: {
     backgroundColor: Colors.green,

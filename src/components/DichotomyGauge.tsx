@@ -31,6 +31,7 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
     const highest = couple
       .concat()
       .sort((a, b) => this.getPercentage(b.dichotomy) - this.getPercentage(a.dichotomy));
+
     return this.getPercentage(highest[0].dichotomy);
   }
 
@@ -46,6 +47,7 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
         <View style={styles.row}>
           <Text style={[
               styles.percentage,
+              styles.percentageLeft,
               type.includes(entry.fields[0].dichotomy) && { color: entry.color },
             ]}>
               {this.getPercentage(entry.fields[0].dichotomy)}%
@@ -56,13 +58,13 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
             } />
             <View style={[
               styles.value,
-              type.includes(entry.fields[0].dichotomy) ? styles.valueLeft : styles.valueRight,
               { backgroundColor: entry.color },
               { width: `${this.getWidth(entry.fields)}%`},
             ]} />
           </View>
           <Text style={[
             styles.percentage,
+            styles.percentageRight,
             type.includes(entry.fields[1].dichotomy) && { color: entry.color },
           ]}>
             {this.getPercentage(entry.fields[1].dichotomy)}%
