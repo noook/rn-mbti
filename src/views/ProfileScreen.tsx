@@ -48,7 +48,7 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
 
     this.state = {
       loaded: false,
-      testDone: true,
+      testDone: false,
       type: '',
       ratios: initResults(),
     }
@@ -57,7 +57,7 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
   async updateType() {
     try {
       const { type, ratios } = await StorageHelper.getItem<UserType>('userType', JSON.parse);
-      this.setState({ type, ratios, loaded: true });
+      this.setState({ type, ratios, loaded: true, testDone: true });
     } catch (e) {
       this.setState({ testDone: false, loaded: true });
     }
@@ -67,7 +67,6 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
     this.focusListener = this.props.navigation.addListener('didFocus', () => {
       this.updateType();
     });
-    this.updateType();
   }
 
   componentWillUnmount() {
