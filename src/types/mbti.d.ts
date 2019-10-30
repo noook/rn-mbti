@@ -1,3 +1,5 @@
+import { IntensityPickerItem } from '@/components/IntensityPicker';
+
 export type QuestionPosition = 'left' | 'right';
 
 export type Dichotomy = 'E' | 'I' | 'N' | 'S' | 'T' | 'F' | 'J' | 'P';
@@ -10,9 +12,16 @@ export interface MbtiQuestion {
   value: Dichotomy | string;
 }
 
+export interface MbtiTestQuestion {
+  step: number;
+  questions: [MbtiQuestion, MbtiQuestion];
+}
+
 export type MbtiResults = {
   [key in Dichotomy]: number;
 }
+
+export type SelectedIntensityPicker = IntensityPickerItem & { letter: Dichotomy };
 
 export interface UserType {
   type: string;

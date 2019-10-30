@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, ScrollView, ActivityIndicator, View, ShadowPropTypesIOS } from 'react-native';
+import { Text, Image, ScrollView, ActivityIndicator, View } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { Container, DichotomyGauge, BaseComponent } from '@/components';
 import styles from './styles/ProfileScreenStyles';
@@ -8,6 +8,7 @@ import { UserType, Dichotomy } from '@/types/mbti';
 import { initResults } from '@/helper/mbti';
 import { pics } from '@/constants/Mbti';
 import { Colors } from '@/constants';
+import { NavigationEventSubscription } from 'react-navigation';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -40,6 +41,8 @@ const mock: UserType = {
 };
 
 export default class ProfileScreen extends BaseComponent<Props, State> {
+  private focusListener: NavigationEventSubscription;
+
   public constructor(props: Props) {
     super(props);
 
@@ -60,8 +63,15 @@ export default class ProfileScreen extends BaseComponent<Props, State> {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.updateType();
+    });
     this.updateType();
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
   }
 
   render() {
