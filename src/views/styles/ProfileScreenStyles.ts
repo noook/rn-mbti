@@ -1,5 +1,5 @@
 import { StyleSheet, StatusBar, Platform } from 'react-native';
-import { Colors } from '@/constants';
+import { Colors, Metrics } from '@/constants';
 
 export default StyleSheet.create({
   container: {
@@ -55,5 +55,22 @@ export default StyleSheet.create({
     marginVertical: 10,
     lineHeight: 20,
     textAlign: 'justify',
+  },
+
+  shareButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: Metrics.screenWidth * 0.10,
+    width: Metrics.screenWidth * 0.15,
+    height: Metrics.screenWidth * 0.15,
+    backgroundColor: 'lightgray',
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  shareButtonIcon: {
+    fontSize: 21,
+    color: '#fff',
   },
 });
