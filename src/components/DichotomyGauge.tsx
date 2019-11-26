@@ -76,8 +76,8 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
       bar.width,
       {
         toValue: 1,
-        duration: 3000,
-        easing: Easing.linear,
+        duration: 700,
+        easing: Easing.inOut(Easing.quad),
       }
     ).start(() => this.animateBar(bar));
   }
@@ -89,19 +89,13 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
       const value: EntryData = this.values[index];
       const interpolation = value.width.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, this.getWidth(entry.fields)],
+        outputRange: ['0%', `${this.getWidth(entry.fields)}%`],
       });
-
-      console.log({
-        inputRange: [0, 1],
-        outputRange: [0, this.getWidth(entry.fields)],
-      })
 
       return (
         <View style={styles.container} key={index}>
           <View>
             <Text style={styles.coupleTitle}>{this.$t(`mbti.coupleName.${entry.name}`)}</Text>
-            <Animated.Text style={styles.coupleTitle}>{interpolation}</Animated.Text>
             <Text style={styles.coupleDescription}>{this.$t(`mbti.coupleDescription.${entry.name}`)}</Text>
           </View>
           <View style={styles.row}>
@@ -119,7 +113,7 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
               <Animated.View style={{
                 ...styles.value,
                 backgroundColor: entry.color,
-                width: `${interpolation}%`
+                width: interpolation,
               }} />
             </View>
             <Text style={[
