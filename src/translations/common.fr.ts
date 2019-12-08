@@ -7,6 +7,7 @@ export default {
       share_text: 'Partagez votre personnalité !'
     },
     startTheTest: 'Commencer le test',
+    restartTheTest: 'Repasser le test',
     next: 'Suivant',
     types: 'Types',
     summary: 'Résumé',

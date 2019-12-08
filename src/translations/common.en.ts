@@ -7,6 +7,7 @@ export default {
       share_text: 'Share your personnality !'
     },
     startTheTest: 'Start the test',
+    restartTheTest: 'Remake the test',
     next: 'Next',
     types: 'Types',
     summary: 'Summary',
