@@ -17,6 +17,11 @@ const ISFJ = require('../../assets/types/isfj.png');
 const ESTP = require('../../assets/types/estp.png');
 const ESFP = require('../../assets/types/esfp.png');
 
+const analysts = require('../../assets/categories/analysts.png');
+const diplomats = require('../../assets/categories/diplomats.png');
+const sentinels = require('../../assets/categories/sentinels.png');
+const explorers = require('../../assets/categories/explorers.png');
+
 export const types: string[] = [
   'ISFP', 'ISTP', 'ISTJ', 'INTJ',
   'INFJ', 'ENFJ', 'ESFJ', 'ESTJ',
@@ -69,3 +74,37 @@ export const pics = {
   ENTJ, ENTP, INFP, ENFP,
   INTP, ISFJ, ESTP, ESFP,
 };
+
+export const categories = {
+  analysts: [
+    'INTJ',
+    'INTP',
+    'ENTJ',
+    'ENTP',
+  ],
+  diplomats: [
+    'INFJ',
+    'INFP',
+    'ENFJ',
+    'ENFP',
+  ],
+  sentinels: [
+    'ISTJ',
+    'ISFJ',
+    'ESTJ',
+    'ESFJ',
+  ],
+  explorers: [
+    'ISTP',
+    'ISFP',
+    'ESTP',
+    'ESFP',
+  ],
+}
+
+export const categoriesPics = {
+  analysts,
+  diplomats,
+  sentinels,
+  explorers
+}

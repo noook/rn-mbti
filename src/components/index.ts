@@ -8,7 +8,9 @@ import ProgressBar from './ProgressBar';
 import BaseComponent from './BaseComponent';
 import DichotomyGauge from './DichotomyGauge';
 import MbtiTypeTile from './MbtiTypeTile';
+import MbtiTypeCategoryTile from './MbtiTypeCategoryTile';
 import TypeModal from './TypeModal';
+import TypeCategoryModal from './TypeCategoryModal';
 
 export {
   TabBar,
@@ -21,5 +23,7 @@ export {
   BaseComponent,
   DichotomyGauge,
   MbtiTypeTile,
+  MbtiTypeCategoryTile,
   TypeModal,
+  TypeCategoryModal,
 }
