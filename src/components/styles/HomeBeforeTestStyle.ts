@@ -12,6 +12,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  remakeTest: {
+    marginVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   title: {
     marginVertical: 10,
     marginHorizontal: 20,
