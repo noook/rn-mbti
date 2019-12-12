@@ -1,36 +1,36 @@
 import React from 'react';
 import { Text, FlatList, ActivityIndicator } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
-import { Container, BaseComponent, MbtiTypeTile, TypeModal } from '@/components';
+import { Container, BaseComponent, TypeCategoryModal, MbtiTypeCategoryTile } from '@/components';
 import styles from './styles/TypesScreenStyles';
-import { MbtiTypeItem } from '@/types/mbti';
-import { types } from '@/constants/Mbti';
+import { MbtiTypeCategoryItem } from '@/types/mbti';
+import { categories } from '@/constants/Mbti';
 
 interface Props {
   navigation: NavigationStackProp;
 }
 
 interface State {
-  types: MbtiTypeItem[];
+  categories: MbtiTypeCategoryItem[];
   isLoading: boolean;
   isModalVisible: boolean;
-  selectedType: MbtiTypeItem;
+  selectedTypeCategory: MbtiTypeCategoryItem;
 }
 
 export default class TypesScreen extends BaseComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      types: [],
+      categories: [],
       isLoading: true,
       isModalVisible: false,
-      selectedType: {
-        aka: '',
+      selectedTypeCategory: {
         name: '',
-        summary: ''
-      }
+        types: [],
+        aka: '',
+      },
     };
-    this.renderTypeItem = this.renderTypeItem.bind(this);
+    this.renderTypeCategoryItem = this.renderTypeCategoryItem.bind(this);
   }
 
   componentDidMount() {
@@ -38,13 +38,17 @@ export default class TypesScreen extends BaseComponent<Props, State> {
   }
 
   public getTypes(): void {
-    let formattedTypes: MbtiTypeItem[] = types.map(type => ({
-      aka: type,
-      name: this.$t(`mbti.typeAka.${type}`),
-      summary: this.$t(`mbti.summaries.${type}`),
+    let formattedCategories: MbtiTypeCategoryItem[] = Object.keys(categories).map(category => ({
+      name: this.$t(`mbti.typesCategories.${category}`),
+      aka: category,
+      types: categories[category].map(type => ({
+        aka: type,
+        name: this.$t(`mbti.typeAka.${type}`),
+        summary: this.$t(`mbti.summaries.${type}`)
+      }))
     }));
 
-    this.setState({ types: formattedTypes, isLoading: false });
+    this.setState({ categories: formattedCategories, isLoading: false });
   }
 
   private renderEmptyList() {
@@ -53,10 +57,10 @@ export default class TypesScreen extends BaseComponent<Props, State> {
     );
   }
 
-  public renderTypeItem({ item, index }) {
+  public renderTypeCategoryItem({ item, index }) {
     return (
-      <MbtiTypeTile item={item} key={index} onPress={() => {
-        this.setState({ isModalVisible: true, selectedType: item });
+      <MbtiTypeCategoryTile item={item} key={index} onPress={() => {
+        this.setState({ isModalVisible: true, selectedTypeCategory: item });
       }}/>
     );
   }
@@ -64,19 +68,18 @@ export default class TypesScreen extends BaseComponent<Props, State> {
   render() {
     return (
       <Container>
-        <TypeModal
+        <TypeCategoryModal
           isVisible={this.state.isModalVisible}
-          type={this.state.selectedType}
-          onBackPress={() => this.setState({ isModalVisible: false })}
-        />
+          category={this.state.selectedTypeCategory} 
+          onBackPress={() => this.setState({ isModalVisible: false })}/>
         <Text style={styles.title}>{this.$t('common.types')}</Text>
         {this.state.isLoading === true ?
           <ActivityIndicator size={'large'} color={'#000'}/>
         :
           <FlatList
-            data={this.state.types}
+            data={this.state.categories}
             ListEmptyComponent={this.renderEmptyList}
-            renderItem={this.renderTypeItem} 
+            renderItem={this.renderTypeCategoryItem} 
             keyExtractor={item => item.aka}/>
         }
       </Container>

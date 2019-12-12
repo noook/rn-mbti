@@ -36,7 +36,7 @@ export default StyleSheet.create({
 
   typeImageContainer: {
     width: '50%',
-    height: Metrics.screenHeight * 0.15,
+    height: Metrics.screenHeight * 0.10,
     alignSelf: 'center',
   },
 

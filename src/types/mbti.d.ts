@@ -45,3 +45,9 @@ export interface MbtiTypeItem {
   name: string;
   summary: string;
 }
+
+export interface MbtiTypeCategoryItem {
+  name: string;
+  types: MbtiTypeItem[];
+  aka: string;
+}
