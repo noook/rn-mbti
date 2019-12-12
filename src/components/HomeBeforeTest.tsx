@@ -41,7 +41,7 @@ export default class HomeBeforeTest extends BaseComponent<Props, State> {
     return (
       <Container>
         <Text style={styles.title}>{this.$t('common.home')}</Text>
-        { tookTest ?
+        { !tookTest ?
         <View style={styles.centeredView}>
           <TouchableOpacity
             style={styles.button}
