@@ -11,6 +11,11 @@ class StorageHelper {
     }
   }
 
+  /**
+   * Retrieves an item from the local storage transformed by the transform function if provided
+   * @param key 
+   * @param {Function} [transformer] - Method invoked to transform the retrieved data
+   */
   public async getItem(key: string): Promise<string>;
   public async getItem<T>(key: string, transformer: (retrieved: string) => T): Promise<T>;
   public async getItem<T>(key: string, transformer?: (retrieved: string) => T) {

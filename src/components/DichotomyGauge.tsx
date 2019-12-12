@@ -108,6 +108,7 @@ export default class DichotomyGauge extends BaseComponent<Props, State> {
             </Text>
             <View style={styles.gauge}>
               <View style={
+                // Determines wether the bar should be on the right or on the left
                 type.includes(entry.fields[1].dichotomy) && styles.spacer
               } />
               <Animated.View style={{

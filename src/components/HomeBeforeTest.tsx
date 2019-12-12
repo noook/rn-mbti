@@ -27,7 +27,7 @@ export default class HomeBeforeTest extends BaseComponent<Props, State> {
   }
 
   componentDidMount() {
-    StorageHelper.getItem('unset')
+    StorageHelper.getItem('userType')
       .then(() => {
         this.setState({ tookTest: true })
       })

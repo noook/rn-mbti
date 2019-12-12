@@ -25,6 +25,7 @@ interface State {
 }
 
 export default class QuestionDisplay extends BaseComponent<NavigationStackScreenProps<{}, Props>, State> {
+  // Prepares and indexes questions
   private questions: MbtiTestQuestion[] = shuffle<[MbtiQuestion, MbtiQuestion][]>(questions)
     .map((questions: [MbtiQuestion, MbtiQuestion][], index: number) => ({
       step: index + 1,
@@ -74,7 +75,7 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
   onSelect(el: MbtiTestQuestion, selected: IntensityPickerItem) {
     const { answers } = this.state;
     const letter: Dichotomy = el.questions
-      .concat()
+      .concat() // Copy of array to prevent mutation
       .sort(() => -1 * selected.position)
       .shift().value as Dichotomy;
 
@@ -85,6 +86,7 @@ export default class QuestionDisplay extends BaseComponent<NavigationStackScreen
     this.setState({ answers });
   }
 
+  // Checks if all questions have an answer
   buttonDisabled() {
     const { answers, set } = this.state;
     return !set.every((el: MbtiTestQuestion) => !!answers[el.step]);
